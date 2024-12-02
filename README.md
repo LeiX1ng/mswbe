@@ -54,7 +54,7 @@ Example:
 
 We can execute a enumeration by specifying the following parameter.
 
-$code_dir $data_dir$ ${dvalues[d]} ${avalues[a]} $((bvalues[b])) ${reductions[r]} ${orders[o]} ${methods[m]} 
+$code_dir $data_dir$ ${dvalues[d]} ${avalues[a]} ${bvalues[b]} ${reductions[r]} ${orders[o]} ${methods[m]} 
 
 ```zsh
 
