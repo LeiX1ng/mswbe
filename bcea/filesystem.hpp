@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <stdint.h>
 
 #ifdef _WIN32
 // #include "unistdWindows.hpp"

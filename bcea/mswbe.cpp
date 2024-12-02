@@ -1778,89 +1778,15 @@ void MSWBE::print(Node &node){
     cout << "XR: ";print(node.XR);
 }
 
-/*
-void run_mswbe(int argc, char *argv[],WeightedBipartiteGraph graph){
-
-    MSWBE* mswbe = NULL;
-    cout << "argc = " << argc << endl;
-    if(argc < 5){
-        cout << "Too few arguments" << endl;
-        return;
-    }
-    else if(argc == 5){
-        for( int i = 0; i < argc; ++i )
-            printf( "argv[%d]=%s\n", i, argv[i] );
-        mswbe = new MSWBE(argv[1], atof(argv[2]), atoi(argv[3]), atoi(argv[4]));
-    }
-    else if(argc == 6){
-        for( int i = 0; i < argc; ++i )
-            printf( "argv[%d]=%s\n", i, argv[i] );
-        mswbe = new MSWBE(argv[1], atof(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]));
-    }
-    else{
-        for( int i = 0; i < argc; ++i )
-            printf( "argv[%d]=%s\n", i, argv[i] );
-        mswbe = new MSWBE(argv[1], atof(argv[2]), atoi(argv[3]), atoi(argv[4]), atoi(argv[5]), atoi(argv[6]));
-    }
-
-    //mswbe->read_graph_txt(graph);
-
-    cout<<"delta="<<argv[2]<<", "<<"left_thd="<<argv[3]<<", "<<"right_thd="<<argv[4]<<endl;
-
-    Timer t;
-    if(argc >= 8 && atoi(argv[7]) == 0){
-        mswbe->baseline_mswbe();
-    }
-    else{
-        mswbe->advanced_mswbe();
-    }
-    //mswbe.result_bicliques.clear();
-
-    cout<<"\t------------------------------------------------"<<endl;
-    //cout<<"\tNumber of Similar-weight Bicliques: "<<mswbe.result_count<<endl;
-    mswbe->print_results();
-    cout<<"\tTime cost (without I/O): "<<Tools::integer_to_string(t.elapsed())<<"(s) or "<<Tools::integer_to_string(t.elapsed_in_millisec())<<"(ms)"<<endl;
-    cout << "\tMemory usage : " << mswbe->getMemoryUse() / (1024*1024) << "(MB)" << endl;
-    cout<<"\t------------------------------------------------"<<endl;
-
-    //mswbe.check_results();
-
-    mswbe->delete_memory();
-    //return mswbe->result_bicliques;
-}
-
-int main(int argc, char *argv[]){
-
-    run_mswbe(argc, argv);
-
-    //vector< pair<vector<ui>, vector<ui> > > baseline_result_bicliques = run_mswbe(argv);
-    //vector< pair<vector<ui>, vector<ui> > > advanced_result_bicliques = run_mswbe(argv);
-
-    /*for(int i = 0; i < baseline_result_bicliques.size(); i++){
-        int j = 0;
-        for(; j < advanced_result_bicliques.size(); j++){
-            if(MSWBE::isSameBiclique(advanced_result_bicliques[j], baseline_result_bicliques[i]))
-                break;
-        }
-        if(j >= advanced_result_bicliques.size()){
-            MSWBE::print_biclique(baseline_result_bicliques[i].first, baseline_result_bicliques[i].second);
-        }
-    }
-    cout << baseline_result_bicliques.size() << ", " << advanced_result_bicliques.size() << endl;
-
-
-    return 0;
-}
-     */
 void removeDuplicates(vector<pair<vector<unsigned int>, vector<unsigned int>>> &pairs) {
     unordered_set<unsigned int> uniqueElements;
 
-    // 去重每个pair中的vector元素//为什么要写这个功能//每个pair中会有重复的元素吗？
+   
     for (auto &pair: pairs) {
         auto &firstVector = pair.first;
         auto &secondVector = pair.second;
 
-        // 去重第一个vector
+        
         for (auto &element: firstVector) {
             uniqueElements.insert(element);
         }
@@ -1868,7 +1794,7 @@ void removeDuplicates(vector<pair<vector<unsigned int>, vector<unsigned int>>> &
         firstVector.insert(firstVector.begin(), uniqueElements.begin(), uniqueElements.end());
         uniqueElements.clear();
 
-        // 去重第二个vector
+        
         for (auto &element: secondVector) {
             uniqueElements.insert(element);
         }
@@ -1877,7 +1803,7 @@ void removeDuplicates(vector<pair<vector<unsigned int>, vector<unsigned int>>> &
         uniqueElements.clear();
     }
 
-    // 去重整个vector<pair<vector<int>, vector<int>>>中的pair
+    
     sort(pairs.begin(), pairs.end());
     pairs.erase(unique(pairs.begin(), pairs.end()), pairs.end());
 }
@@ -1887,36 +1813,36 @@ bool contains(const vector<unsigned int> &a, const vector<unsigned int> &b) {
 }
 
 vector<pair<vector<unsigned int>, vector<unsigned int>>> reducePairs(vector<pair<vector<unsigned int>, vector<unsigned int>>> pairs) {
-    // 创建一个标记数组，用于记录哪些pair应该被保留
+
     vector<bool> keep(pairs.size(), true);
 
     for (int i = 0; i < pairs.size(); ++i) {
         for (int j = i + 1; j < pairs.size(); ++j) {
-            // 检查第i个pair和第j个pair
+            
             auto &p1 = pairs[i];
             auto &p2 = pairs[j];
             sort(p1.first.begin(), p1.first.end());
             sort(p1.second.begin(), p1.second.end());
             sort(p2.first.begin(), p2.first.end());
             sort(p2.second.begin(), p2.second.end());
-            // 如果 p1.first == p2.first，检查second
+           
             if (p1.first == p2.first) {
-                // 如果 p2.second 包含 p1.second，标记 i 为 false
+                
                 if (contains(p1.second, p2.second)) {
                     keep[i] = false;
                 }
-                    // 如果 p1.second 包含 p2.second，标记 j 为 false
+                   
                 else if (contains(p2.second, p1.second)) {
                     keep[j] = false;
                 }
             }
-                // 如果 p1.second == p2.second，检查 first
+               
             else if (p1.second == p2.second) {
-                // 如果 p2.first 包含 p1.first，标记 i 为 false
+               
                 if (contains(p1.first, p2.first)) {
                     keep[i] = false;
                 }
-                    // 如果 p1.first 包含 p2.first，标记 j 为 false
+                    
                 else if (contains(p2.first, p1.first)) {
                     keep[j] = false;
                 }
@@ -1924,7 +1850,6 @@ vector<pair<vector<unsigned int>, vector<unsigned int>>> reducePairs(vector<pair
         }
     }
 
-    // 使用标记数组，构建结果向量
     vector<pair<vector<unsigned int>, vector<unsigned int>>> result;
     for (int i = 0; i < pairs.size(); ++i) {
         if (keep[i]) {

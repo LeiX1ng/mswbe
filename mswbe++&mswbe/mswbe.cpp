@@ -1720,16 +1720,16 @@ void MSWBE::print(Node &node){
 }
 
 void printResultBicliques(const std::vector<std::pair<std::vector<ui>, std::vector<ui>>>& result_bicliques) {
-    // 遍历 result_bicliques 中的每个元素
+    
     for (const auto& biclique : result_bicliques) {
-        // 打印第一个向量
+        
         std::cout << "First vector: ";
         for (const auto& val : biclique.first) {
             std::cout << val << " ";
         }
         std::cout << std::endl;
 
-        // 打印第二个向量
+       
         std::cout << "Second vector: ";
         for (const auto& val : biclique.second) {
             std::cout << val << " ";
@@ -1782,7 +1782,7 @@ void run_mswbe(int argc, char *argv[]){
     cout<<"\tTime cost (without I/O): "<<Tools::integer_to_string(t.elapsed())<<"(s) or "<<Tools::integer_to_string(t.elapsed_in_millisec())<<"(ms)"<<endl;
     cout << "\tMemory usage : " << mswbe->getMemoryUse() / (1024) << "(MB)" << endl;
     cout<<"\t------------------------------------------------"<<endl;
-    printResultBicliques(mswbe->result_bicliques);
+    
     
     //mswbe.check_results();
     

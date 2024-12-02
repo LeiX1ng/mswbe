@@ -6,29 +6,6 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-    /*
-    argsController ac(argc, argv);
-    
-    if(!ac.exist("-f")) {
-        printf("file path: -f\n");
-        return 0;
-    }
-    
-    if(!ac.exist("-d")) {
-        printf("graph order: -d(core, two)\n");
-        return 0;
-    }
-    
-
-    //if(ac.exist("-l")) ls = std::stoi(ac["-l"]);
-    //if(ac.exist("-r")) rs = std::stoi(ac["-r"]);
-
-    std::string fPath = ac["-f"];
-    //std::string order = ac["-d"];
-    // 直接赋值给变量，以便调试
-    //std::string fPath = argv[2];
-    //std::string fPath = "/home/xinglei/mydata/dataset/bipartite_graph/weighted/bookcrossing.txt";
-    */
     std::string fPath;
     double mswbe_delta;
     unsigned int mswbe_left_thd;
@@ -55,7 +32,7 @@ int main(int argc, char* argv[]) {
     uint32_t ls = 1, rs = 1;
     
 
-    // 输出赋值的值
+   
     std::cout << "file path: " << fPath << std::endl;
     std::cout << "graph order: " << order << std::endl;
     std::cout << "l " << ls << std::endl;
@@ -80,7 +57,7 @@ int main(int argc, char* argv[]) {
     }
     else {
         BCE bce(fPath, 1, order, ls, rs,mswbe_delta,mswbe_left_thd,mswbe_right_thd,mswbe_reduction_strategy,mswbe_sort_strategy);
-        //预处理
+        
 
         auto t1 = std::chrono::steady_clock::now();
 
@@ -98,9 +75,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-/*
-头文件多次include的问题
-时间没有记录
-memory没有记录
-结果输出检查
-*/
+

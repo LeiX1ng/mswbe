@@ -211,7 +211,7 @@ public:
     
     
 };
-//=====created by Lei Xing=======
+
 void removeDuplicates(vector<pair<vector<unsigned int>, vector<unsigned int>>> &pairs);
 bool contains(const vector<unsigned int> &a, const vector<unsigned int> &b);
 vector<pair<vector<unsigned int>, vector<unsigned int>>> reducePairs(vector<pair<vector<unsigned int>, vector<unsigned int>>> pairs);

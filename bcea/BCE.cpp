@@ -586,7 +586,7 @@ void BCE::bbranch(uint32_t deep) {
 // printf("t=%u add\n", t);
 // }
                 totalMaximalCount++;
-                //接口在这里写
+                
                 uint32_t ls[2];
                 ls[0] = realRSize[0];
                 ls[1] = realRSize[1];
@@ -607,24 +607,16 @@ void BCE::bbranch(uint32_t deep) {
 
                     //if (i == 0) printf(" : ");
                 }
-                //printf("\n");
-                bc.get_wbc(*g);//？may have problem
+                
+                bc.get_wbc(*g);
                 bc.sorted_wbc();
                 MSWBE mswbe(" ",this->mswbe_delta,this->mswbe_left_thd,this->mswbe_right_thd,this->mswbe_reduction_strategy,this->mswbe_sort_strategy);
                 mswbe.read_graph_txt(bc);
                 mswbe.advanced_mswbe();
-                //mswbe.baseline_mswbe();
-                /*
-                if(this->result_mswbe.size()!=0)
-                {
-                    //print bc weighted biclique
-                    bc.print_biclique();
-                }
-                */
+                
                 mswbe.print_results(this->result_mswbe,bc);
-                //存储结果到一个容器内，后续再整体去重
-                //结果存储，去重
-                //print_biclique(bc);
+                
+                
                 #ifdef PUTRESULTS
                     uint32_t ls[2];
                     ls[0] = realRSize[0];

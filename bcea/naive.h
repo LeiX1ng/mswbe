@@ -4,9 +4,7 @@
 #include <vector>
 #include "biGraph.hpp"
 #include <sys/resource.h>
-//
-// Created by Lei Xing on 2023/11/1
-//
+
 using namespace std;
 struct weight_biclique{
     unsigned int u;

@@ -43,14 +43,14 @@ void biclique::print_biclique(){
 void biclique::sorted_wbc(){
     unsigned int leftCount = 0;
     for (const auto &vertex: this->vertices[0]) {
-        // 处理左侧顶点
+        
         leftMapindex[vertex] = leftCount;
         indexMapleft[leftCount] = vertex;
         leftCount++;
     }
     unsigned int rightCount = leftCount;
     for (const auto &vertex: this->vertices[1]) {
-        // 处理右侧顶点
+        
         rightMapindex[vertex] = rightCount;
         indexMapright[rightCount] = vertex;
         rightCount++;

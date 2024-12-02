@@ -31,10 +31,10 @@ public:
 unsigned int mswbe_left_thd,mswbe_right_thd,mswbe_reduction_strategy,mswbe_sort_strategy; 
     double mswbe_delta;
     BCE(const std::string & fPath, int mode, const std::string & order, uint32_t ls, uint32_t rs,unsigned int mswbe_delta,unsigned int mswbe_left_thd,unsigned int mswbe_right_thd,unsigned int mswbe_reduction_strategy,unsigned int mswbe_sort_strategy) {
-        g = new biGraph(fPath, mode, order);//定义了一个biGraph的对象
-        //ls rs是 left constrain and right constrain
+        g = new biGraph(fPath, mode, order);
+        
         printf("load graph\n");fflush(stdout);
-        od = order;//od 输入的order core or two hop
+        od = order;
 
         this->ls = ls;
         this->rs = rs;
